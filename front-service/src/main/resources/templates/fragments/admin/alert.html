@@ -1,0 +1,12 @@
+<th:block
+        th:fragment="alert"
+        xmlns:th="http://www.thymeleaf.org">
+    <div class="custom-alert success" th:if="${is_done == true}">
+        <a class="close-alert" data-target=".custom-alert" data-dismiss="alert" href="javascript:void(0)">&times;</a>
+        <span>Операция успешно завершена</span>
+    </div>
+    <div class="custom-alert error" th:if="${is_done == false}">
+        <a class="close-alert" data-target=".custom-alert" data-dismiss="alert" href="javascript:void(0)">&times;</a>
+        <span>Ошибка при выполнении операции</span>
+    </div>
+</th:block>

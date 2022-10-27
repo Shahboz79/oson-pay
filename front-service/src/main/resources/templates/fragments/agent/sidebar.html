@@ -1,0 +1,40 @@
+<aside
+        th:fragment="sidebar"
+        xmlns:th="http://www.thymeleaf.org"
+        class="main-sidebar">
+
+
+    <div class="sidebar-header">
+        <!-- Logo -->
+        <a th:href="@{/admin/home}" class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini"><strong>FRAUD</strong></span>
+            <!-- logo for regular state and mobile devices -->
+        </a>
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle hide" data-toggle="push-menu" role="button">
+            <span class="sr-only">Toggle navigation</span>
+        </a>
+    </div>
+
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+
+        <!-- Sidebar Menu -->
+        <ul class="sidebar-menu" data-widget="tree">
+<!--            <li><a th:href="@{/agent/rule/list}"><i class="fa fa-table"></i><span>Правила</span></a></li>-->
+            <li><a th:href="@{/agent/transaction/list}"><i class="fa fa-table"></i><span>Транзакции</span></a></li>
+            <li><a th:href="@{/agent/suspect_transaction/list}"><i class="fa fa-table"></i><span>Подозрительный транзакции</span></a></li>
+<!--            <li><a th:href="@{/agent/user/list}"><i class="fa fa-table"></i> <span>Пользователи</span></a></li>-->
+<!--            <li><a th:href="@{/agent/agent/list}"><i class="fa fa-table"></i> <span>Агенты</span></a></li>-->
+            <li><a th:href="@{/agent/merchant/list}"><i class="fa fa-table"></i> <span>Агент Мерчант лист</span></a></li>
+<!--            <li><a th:href="@{/agent/agent/unknown_merchant/list}" style="color: orangered;"><i class="fa fa-table"></i> <span>Неизвестный Мерчант лист</span></a></li>-->
+<!--            <li><a th:href="@{/agent/merchant/list}"><i class="fa fa-table"></i> <span>Cервис лист</span></a></li>-->
+<!--            <li><a th:href="@{/agent/merchant_limit/list}"><i class="fa fa-table"></i> <span>Ограничений</span></a>-->
+            </li>
+            <li><a th:href="@{/admin/logout}" style="color: red;"><i class="fa fa-table" ></i> <span>Выход</span></a></li>
+        </ul>
+        <!-- /.sidebar-menu -->
+    </section>
+    <!-- /.sidebar -->
+</aside>

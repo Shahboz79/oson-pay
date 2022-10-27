@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/e_commerce
+    password: root123
+    username: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+  application:
+    name: REST-SERVICE/api
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    fetch-registry: true
+    register-with-eureka: true

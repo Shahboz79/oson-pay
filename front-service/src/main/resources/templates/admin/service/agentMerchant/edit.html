@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<body>
+<div class="wrapper toggled">
+
+    <div th:replace="fragments/admin/sidebar :: sidebar"></div>
+    <div th:replace="fragments/admin/header :: header(${title})"></div>
+
+    <main class="content mb-5">
+        <div class="custom-form">
+            <!--            <form action="" id="form_filter" method="post">-->
+            <!--                <div class="row" style="padding-right: 15px;">-->
+            <!--                    <div class="col-sm-6 col-md-3 col-lg-2">-->
+            <!--                        <div class="form-group">-->
+            <!--                            <label>Сервис ID</label>-->
+            <!--                            <input type="text"-->
+            <!--                                   class="form-control"-->
+            <!--                                   name="service_id"-->
+            <!--                                   th:value="${service_id}"-->
+            <!--                                   id="input_merchant_id">-->
+            <!--                        </div>-->
+            <!--                    </div>-->
+
+            <!--                    <div class="col-sm-6 col-md-4 col-lg-3">-->
+            <!--                        <div class="form-group">-->
+            <!--                            <label>Имя сервиса</label>-->
+            <!--                            <input type="text"-->
+            <!--                                   class="form-control"-->
+            <!--                                   name="name"-->
+            <!--                                   th:value="${name}"-->
+            <!--                                   id="input_merchant_name">-->
+            <!--                        </div>-->
+            <!--                    </div>-->
+
+            <!--                    <div class="col-sm-6 col-md-3 col-lg-2">-->
+            <!--                        <div class="form-group">-->
+            <!--                            <label style="width: 100%;">Проверить fraud</label>-->
+            <!--                            <input class="form-control" data-height="25"-->
+            <!--                                   data-off="Неактивный"-->
+            <!--                                   data-offstyle="secondary"-->
+            <!--                                   data-on="Активный" data-onstyle="primary"-->
+            <!--                                   data-toggle="toggle"-->
+            <!--                                   data-width="130"-->
+            <!--                                   style="display: contents;"-->
+            <!--                                   name="check_fraud"-->
+            <!--                                   th:checked="${check_fraud}"-->
+            <!--                                   type="checkbox"-->
+            <!--                            >-->
+            <!--                        </div>-->
+            <!--                    </div>-->
+
+            <!--                    <div class="col-sm-6 col-md-3 col-lg-2">-->
+            <!--                        <div class="form-group">-->
+            <!--                            <label style="width: 100%;">Проверить прокуратура</label>-->
+            <!--                            <input class="form-control" data-height="25"-->
+            <!--                                   data-off="Неактивный"-->
+            <!--                                   data-offstyle="secondary"-->
+            <!--                                   data-on="Активный" data-onstyle="primary"-->
+            <!--                                   data-toggle="toggle"-->
+            <!--                                   data-width="130"-->
+            <!--                                   style="display: contents;"-->
+            <!--                                   name="check_p"-->
+            <!--                                   th:checked="${check_p}"-->
+            <!--                                   type="checkbox"-->
+            <!--                            >-->
+            <!--                        </div>-->
+            <!--                    </div>-->
+
+            <!--                    <input id="input_page" name="page" th:value="${page}" type="hidden">-->
+
+            <!--                    <div class="clearfix"></div>-->
+
+            <!--                    <hr class="form-control">-->
+
+            <!--                    <div class="col-12 d-flex">-->
+            <!--                        <button class="btn-reset" onclick="clearForm()" type="button">Cбросить</button>-->
+            <!--                        <button class="btn-ready" type="submit">Готово</button>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--            </form>-->
+
+        </div>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Add agent merchant
+        </button>
+
+        <!-- Modal -->
+
+        <div>
+            <form th:action="@{/admin/agent/merchant/edit/{id}(id=${agentMerchant.id})}"
+                  th:object="${agentMerchant}"
+                  th:method="post">
+                <div class="mb-3">
+                    <label for="exampleInputFullName1" class="form-label">Name</label>
+                    <input
+                            type="text"
+                            class="form-control"
+                            id="exampleInputFullName1"
+                            name="name"
+                            th:value="${agentMerchant.name}"
+                    >
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputFullName2" class="form-label">Min amount</label>
+                    <input
+                            type="number"
+                            class="form-control"
+                            id="exampleInputFullName2"
+                            name="minAmount"
+                            th:value="${agentMerchant.minAmount}"
+                    >
+
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputFullName3" class="form-label">Max amount</label>
+                    <input
+                            type="number"
+                            class="form-control"
+                            id="exampleInputFullName3"
+                            name="maxAmount"
+                            th:value="${agentMerchant.maxAmount}"
+                    >
+                </div>
+                <select
+                        name="agentId"
+                        id="exampleInputPosition1"
+                        class="form-select"
+                        aria-label="Default select example">
+                    <option selected th:value="${agentMerchant.agentEntity.id}">
+                        <th:block th:text="${agentMerchant.agentEntity.name}"></th:block>
+                    </option>
+                    <option
+                            th:each="agent:${agentList}"
+                            th:value="${agent.id}"
+                            th:text="${agent.name}"
+                    ></option>
+                </select>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+        </div>
+    </main>
+</div>
+<script src="/plugins/jquery/jquery-3.5.1.min.js"></script>
+<script src="/plugins/popper/popper.min.js"></script>
+<script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="/plugins/select2/select2.min.js"></script>
+<script src="/plugins/bootstrap-toggle/js/bootstrap2-toggle.min.js"></script>
+<script src="/plugins/custom_js/main.js"></script>
+
+<script>
+    $('#myModal').on('shown.bs.modal', function () {
+        $('#myInput').trigger('focus')
+    })
+
+    function deleteMerchant(merchantId) {
+        $.post("delete", {merchant_id: merchantId})
+            .done(function (data) {
+                console.log(data)
+                if (data.success) {
+                    alert("Deleted")
+                    location.reload()
+                } else {
+                    alert(data.message)
+                }
+            });
+    }
+
+    function activateMerchant(merchantId) {
+        $.post("activate", {merchant_id: merchantId})
+            .done(function (data) {
+                console.log(data)
+                if (data.success) {
+                    alert("Activated")
+                    location.reload()
+                } else {
+                    alert(data.message)
+                }
+            });
+    }
+
+    let input = document.getElementById("name");
+
+    function addAgent() {
+        const data = {name: input.value};
+        console.log(data);
+
+        fetch('http://REST-SERVICE/api/agent/merchant/add', {
+            method: 'POST', // or 'PUT'
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    }
+
+</script>
+</body>
+
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Service list</title>
+
+    <link href="/images/shortcut_icon.png" rel="shortcut icon" type="image/png"/>
+    <link href="/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/plugins/bootstrap-toggle/css/bootstrap2-toggle.min.css" rel="stylesheet" type="text/css">
+    <link href="/plugins/select2/select2.min.css" rel="stylesheet" type="text/css">
+    <link href="/plugins/custom_styles/header.css" rel="stylesheet" type="text/css">
+    <link href="/plugins/custom_styles/sidebar.css" rel="stylesheet" type="text/css">
+    <link href="/plugins/custom_styles/content.css" rel="stylesheet" type="text/css">
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"
+          rel="stylesheet">
+</head>
+</html>

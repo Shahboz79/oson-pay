@@ -1,0 +1,9 @@
+#spring:
+#  application:
+#    name: FRONT_SERVICE
+eureka:
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+server:
+  port: 8761

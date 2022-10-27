@@ -1,0 +1,11 @@
+<header
+        th:fragment="header(title)"
+        xmlns:th="http://www.thymeleaf.org"
+        class="header d-flex">
+    <div class="my-auto ml-2 d-flex">
+        <button id="toggle-sidebar" class="mr-4">
+            <i class="fa fa-bars"></i>
+        </button>
+        <span th:text="${title}">Unknown title</span>
+    </div>
+</header>

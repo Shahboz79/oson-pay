@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Service list</title>
+
+    <link href="/images/shortcut_icon.png" rel="shortcut icon" type="image/png"/>
+    <link href="/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/plugins/bootstrap-toggle/css/bootstrap2-toggle.min.css" rel="stylesheet" type="text/css">
+    <link href="/plugins/select2/select2.min.css" rel="stylesheet" type="text/css">
+    <link href="/plugins/custom_styles/header.css" rel="stylesheet" type="text/css">
+    <link href="/plugins/custom_styles/sidebar.css" rel="stylesheet" type="text/css">
+    <link href="/plugins/custom_styles/content.css" rel="stylesheet" type="text/css">
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"
+          rel="stylesheet">
+</head>
+
+<body>
+<div class="wrapper toggled">
+
+    <div th:replace="fragments/admin/sidebar :: sidebar"></div>
+    <div th:replace="fragments/admin/header :: header(${title})"></div>
+
+    <main class="content mb-5">
+        <form th:action="@{/admin/agent/edit/{id}(id=${agent.id})}" th:object="${agent}" th:method="post">
+            <div class="mb-3">
+                <label for="exampleInputFullName1" class="form-label">Name</label>
+                <input
+                        type="text"
+                        class="form-control"
+                        id="exampleInputFullName1"
+                        name="name"
+                        th:value="${agent.name}"
+                >
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleInputFullName2" class="form-label">Secret key</label>
+                <input
+                        type="text"
+                        class="form-control"
+                        id="exampleInputFullName2"
+                        name="secretKey"
+                        th:value="${agent.secretKey}"
+                >
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </main>
+</div>
+<script src="/plugins/jquery/jquery-3.5.1.min.js"></script>
+<script src="/plugins/popper/popper.min.js"></script>
+<script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="/plugins/select2/select2.min.js"></script>
+<script src="/plugins/bootstrap-toggle/js/bootstrap2-toggle.min.js"></script>
+<script src="/plugins/custom_js/main.js"></script>
+
+<script>
+    $('#myModal').on('shown.bs.modal', function () {
+        $('#myInput').trigger('focus')
+    })
+
+    function deleteMerchant(merchantId) {
+        $.post("delete", {merchant_id: merchantId})
+            .done(function (data) {
+                console.log(data)
+                if (data.success) {
+                    alert("Deleted")
+                    location.reload()
+                } else {
+                    alert(data.message)
+                }
+            });
+    }
+
+    function activateMerchant(merchantId) {
+        $.post("activate", {merchant_id: merchantId})
+            .done(function (data) {
+                console.log(data)
+                if (data.success) {
+                    alert("Activated")
+                    location.reload()
+                } else {
+                    alert(data.message)
+                }
+            });
+    }
+
+    let input = document.getElementById("name");
+
+    function addAgent() {
+        const data = {name: input.value};
+        console.log(data);
+
+        fetch('http://REST-SERVICE/api/agent/add', {
+            method: 'POST', // or 'PUT'
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    }
+
+</script>
+</body>
+</html>

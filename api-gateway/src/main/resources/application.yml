@@ -1,0 +1,31 @@
+server:
+  port: 4000
+
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    gateway:
+      routes:
+        - id: REST-SERVICE/api
+          uri: lb://REST-SERVICE/api
+          predicates:
+            - Path=/api/**
+        - id: FRONT-SERVICE
+          uri: lb://FRONT-SERVICE
+          predicates:
+            - Path=/admin/**
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+

@@ -1,0 +1,36 @@
+.header {
+    position: sticky;
+    top: 0;
+    height: 3rem;
+    color: #ffffff;
+    background-color: #4f6273;
+    font-size: 18px;
+    z-index: 1;
+    -webkit-transition: padding-left .3s ease-out;
+    transition: padding-left .3s ease-out;
+}
+.header #toggle-sidebar {
+    left: 0px;
+    background-color: #fff;
+    border: none;
+    border-radius: 50%;
+    padding: 0.2rem 0.5rem;
+    position: relative;
+    -webkit-transition: all .3s ease-out;
+    transition: all .3s ease-out;
+}
+.header > div > span {
+    width: 80%;
+    white-space: nowrap;
+    margin-right: 1rem;
+    overflow: auto;
+    text-overflow: ellipsis;
+}
+@media (max-width: 620px){
+    .wrapper.toggled .header #toggle-sidebar {
+        left: 280px;
+    }
+}
+.header > div:nth-child(1) {
+    overflow: hidden;
+}

@@ -1,0 +1,29 @@
+.custom-alert {
+    position: absolute;
+    top: .2rem;
+    right: 1rem;
+    height: 2.5rem;
+    z-index: 2;
+    padding: 0.5rem 1rem;
+    border-radius: 0.6rem;x;
+    text-decoration: none !important;
+    color: white;
+    font-size: 16px;
+}
+.custom-alert.success {
+    background-color: #4CAF50;
+}
+.custom-alert.error {
+    background-color: #f44336;
+}
+.close-alert {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 2rem;
+  line-height: 1.7rem;
+  cursor: pointer;
+  transition: 0.3s;
+  text-decoration: none !important
+}
